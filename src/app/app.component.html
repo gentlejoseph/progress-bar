@@ -1,0 +1,22 @@
+<div class="progress-bar-wraper">
+  <h1>Progress Bar</h1>
+  <div class="progress-bar-wraper__progress-bar" [ngClass]="{'bar-exceed-wraper': bar > limit}"
+    *ngFor="let bar of barList; let i = index" [style.width.px]="limit+20">
+    <div class="progress-bar-wraper__progress-bar__bar"
+      [style.width.px]="bar > limit ? limit : bar"
+      [ngClass]="{'bar-exceed': bar > limit}">
+      <span class="progress-bar-wraper__progress-bar__value">{{bar}}%</span>
+    </div>
+  </div>
+  <div class="limit">
+    <p>Limit : {{limit}}</p>
+  </div>
+  <div class="progress-bar-wraper__action-items">
+    <select #mySelect [ngModel]="selectedBar" (ngModelChange)="onOptionsSelected(mySelect.value)">
+      <option *ngFor="let bar of barList; let i =index" [value]="i">Progress {{i+1}}</option>
+    </select>
+    <div class="button-list">
+      <button *ngFor="let btn of buttonList" (click)="onButtonClick(btn)">{{btn}}</button>
+    </div>
+  </div>
+</div>
